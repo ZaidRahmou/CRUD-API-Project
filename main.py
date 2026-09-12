@@ -9,3 +9,6 @@ class Student(BaseModel):
     student_address: str
     student_email: str
     
+database={}
+student_counter=1
+app=FastAPI()
