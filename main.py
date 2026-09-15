@@ -15,3 +15,10 @@ student_counter=1
 app=FastAPI()
 
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"], allow_credentials=True)
+
+@app.post("/student")
+def create_student(student: Student):
+    global student_counter
+    database[student_counter]= student
+    student_counter+=1
+    return "Student created successfully!"
