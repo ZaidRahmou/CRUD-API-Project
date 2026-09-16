@@ -22,3 +22,13 @@ def create_student(student: Student):
     database[student_counter]= student
     student_counter+=1
     return "Student created successfully!"
+@app.get("/student")
+def get_students():
+    return database
+@app.get("/student/{student_id}")
+def get_student(student_id: int):
+    if student_id in database:
+        return database[student_id]
+    else:
+        raise HTTPException(status_code=404, detail="Student not found")
+    
