@@ -29,6 +29,15 @@ def get_students():
 def get_student(student_id: int):
     if student_id in database:
         return database[student_id]
-    else:
-        raise HTTPException(status_code=404, detail="Student not found")
-    
+    raise HTTPException(status_code=404, detail="Student not found")
+@app.put("/student/{student_id}")
+def update_student(student_id:int, student: Student):
+    if student_id in database:
+        database[student_id]= student
+        return "Student updated successfully!"
+    raise HTTPException(status_code=404, detail="Student not found")
+@app.delete("/student/{student_id}")
+def delete_student(student_id:int):
+    if student_id in database:
+        del database[student_id]
+        return "Student deleted successfully!"
