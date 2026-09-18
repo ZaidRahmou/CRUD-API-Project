@@ -41,3 +41,6 @@ def delete_student(student_id:int):
     if student_id in database:
         del database[student_id]
         return "Student deleted successfully!"
+    else:
+        raise HTTPException(status_code=404, detail="Student not found")
+    
