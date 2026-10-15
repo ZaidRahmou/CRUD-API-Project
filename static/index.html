@@ -4,9 +4,29 @@
         <title>CRUD Operations</title>
     </head>
     <script>
-        <!-- test -->
+        
         function createStudent() {
-            
+            let fname = document.getElementById("create_student_fname").value;
+            let lname = document.getElementById("create_student_lname").value;
+            let phone = document.getElementById("create_student_phone_number").value;
+            let parentPhone = document.getElementById("create_student_parent_phone_number").value;
+            let address = document.getElementById("create_student_address").value;
+            let email = document.getElementById("create_student_email").value;
+
+            fetch("http://127.0.0.1:8000/student", {
+                method: "post",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    student_fname: fname,
+                    student_lname: lname,
+                    student_phone_number: phone,
+                    student_parent_phone_number: parentPhone,
+                    student_address: address,
+                    student_email: email
+        })
+    })
+    .then(response => response.json())
+    .then(data => alert(data))
         }
     </script>
     <body>
